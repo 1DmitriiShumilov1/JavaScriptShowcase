@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: Open Sans;
+    color: white;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: rgb(36, 36, 36);
+}
+
+.contact-list, .contact-buttons{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 50%;
+    margin: 20px auto;
+}
+    .cell{
+        background-color: rgb(80, 80, 80);
+        margin: 1px;
+        padding: 5px
+    }
+        .big-cell{
+            font-size: 1.2em;
+            color:rgb(136, 247, 255)
+        }
+    .button{
+        background-color: rgb(156, 156, 156);
+        width: 90%;
+        margin: auto;
+    }
+
+.invisible{
+   display: none;
+}
+
+.add-contact-form{
+    background-color: cornflowerblue;
+    padding: 40px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    text-align: center;
+    margin: auto;
+}
+    .text-enter{
+        padding: 20px 5px 5px 5px;
+        font-size: 20px;
+    }
+    .input{
+        z-index: 0;
+        color: black;
+    }
+    .final-step-buttons{
+        margin: 20px auto;
+        width: 75%;
+    }
+        .final-button{
+            width: 40%;
+            background-color: darkgrey;
+            overflow: 0;
+            border: 1px solid black;
+            outline-style: none;
+            font-size: .9em;
+        }
