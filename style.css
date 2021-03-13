@@ -1,64 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 *{
     box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
+    font-family: Open Sans;
     color: black;
 }
 
 html, body{
     margin: 0;
     padding: 0;
-    min-width: 200px;
 }
 
-.grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+body{
+    height: 100vh;
 }
 
-.promo{
-    background-color: aliceblue;
-    width: 700px;
-    border: 1px dotted grey;
+.main-header{
+    background-color: black;
+    padding: 20px 0 20px 0;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-.main-p{
-    margin: 2% 2% 4% 2%;
-    font-size: 1.9em;
+.main-list{
+    margin: 0;
+    background-image: linear-gradient(90deg, #833ab4, #fd1d1d, #fcb045);
+    background-size: 400%;
+    animation: bg-animation 5s infinite alternate;
+    display: flex;
+    width: 100%;
+    min-height: 80vh;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+@keyframes bg-animation{
+    0%{
+        background-position: left;
+    }
+    100%{
+        background-position: right;
+    }
+}
+
+.main-list a{
+    background-color: black;
+    padding: 3em;
+    margin: 1em;
+    width: 25%;
     text-align: center;
     color: white;
-    text-shadow: 0px 0px 20px white;
+    font-size: 1.3em;
+    transition-duration: 200ms;
+    text-decoration: none;
 }
-
-.description-p{
-    font-family: "Open Sans", sans-serif;
-    text-align: center;
-    width: 700px;
-    margin: 0 0 40px 0;
-    padding-top: 35px;
-    font-size: 1.4em;
-}
-
-.side-info{
-    width: 500px;
-    margin: 0 auto;
-    padding-bottom: 15px;
-    color: grey;
-}
-    .last{
-        padding-bottom: 35px;
+    .main-list a:hover{
+        background-color: rgb(31, 31, 31);
+        cursor: pointer;
     }
 
-.soup{
-    width: 698px;
-    height: 698px;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgb(0, 0, 0)),
-    url('images/Soup.jpg');
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    margin: 0;
+.link{
+    color: white;
+    width: 98%;
+    margin: 0 auto;
+    text-align: end;
 }
