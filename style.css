@@ -17,7 +17,6 @@ body{
 
 .main-header{
     background-color: black;
-    padding: 20px 0 20px 0;
     display: flex;
     align-items: center;
     min-height: 100vh;
@@ -67,4 +66,44 @@ body{
     width: 98%;
     margin: 0 auto;
     text-align: end;
+}
+
+
+@media screen and (max-width: 1200px){
+    .main-list a{
+        padding: 3em;
+        width: 33%;
+        transition-duration: 200ms;
+    }
+}
+
+@media screen and (max-width: 1040px){
+    .main-list a{
+        padding: 2em;
+        width: 45%;
+        transition-duration: 200ms;
+    }
+}
+
+@media screen and (max-width: 910px){
+    .main-list{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        padding: 0 12.5%;
+    }
+        .main-list a{
+            width: 75%;
+        }
+    
+    .link{
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .main-list a{
+        font-size: 1em;
+    }
 }
