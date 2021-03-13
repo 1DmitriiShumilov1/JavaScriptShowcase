@@ -21,7 +21,8 @@ function runCode(){
         "name": "Sarah", 
         "phoneNumber": "9876543210", 
         "city": "Auburn"
-    }];
+    }
+    ];
 
     const addContactButton = document.getElementsByClassName("add-contact")[0];
     const updateContactButton = document.getElementsByClassName("update-contact")[0];
@@ -29,15 +30,18 @@ function runCode(){
 
     const addContactButton_done = document.getElementsByClassName("add-done")[0];
     const cancelButton = document.getElementsByClassName("cancel")[0];
-    let invisibleObject = document.getElementsByClassName("invisible")[0];
+
+    const invisibleObjectAdd = document.getElementsByClassName("invisible-add")[0];
+    const invisibleObjectUpdate = document.getElementsByClassName("invisible-update")[0];
 
     addContactButton.addEventListener('click', () => {
-        invisibleObject.classList.add("add-contact-form");
+        invisibleObjectAdd.classList.add("add-contact-form");
     });
 
     cancelButton.addEventListener('click', closeWindow);
 
     addContactButton_done.addEventListener('click', addContact);
+
 
     function addContact(){
         var inputName = document.getElementsByClassName("input-name")[0].value;
@@ -92,9 +96,7 @@ function runCode(){
         }
     }
 
-        
-
     function closeWindow(){
-        invisibleObject.classList.remove("add-contact-form");
+        invisibleObjectAdd.classList.remove("add-contact-form");
     }
 }

@@ -28,15 +28,48 @@ html, body{
             font-size: 1.2em;
             color:rgb(136, 247, 255)
         }
+    .btn{
+        background-color: darkgrey;
+        overflow: 0;
+        outline-style: none;
+        border: 1px solid black;
+    }
+        .btn:hover{
+            cursor: pointer;
+        }
+        .btn:active{
+            background-color: rgb(105, 105, 105);
+        }
     .button{
-        background-color: rgb(156, 156, 156);
         width: 90%;
         margin: auto;
     }
+        .cancel-update{
+            margin: 20px auto;
+        }
+        .center-button{
+            display: flex;
+            width: 100%;
+        }
 
-.invisible{
+.invisible-add{
    display: none;
 }
+.invisible-update{
+    display: none;
+}
+
+.update-form-1{
+    display: block;
+    background-color: cornflowerblue;
+    width: 40%;
+    border-radius: 5px;
+    margin: auto;
+}
+    .text-update{
+        text-align: center;
+        padding: 10px;
+    }
 
 .add-contact-form{
     background-color: cornflowerblue;
@@ -62,11 +95,6 @@ html, body{
     }
         .final-button{
             width: 40%;
-            background-color: darkgrey;
-            overflow: 0;
-            border: 1px solid black;
-            outline-style: none;
-            font-size: .9em;
         }
 
 @media screen and (max-width: 800px){
