@@ -68,3 +68,24 @@ html, body{
             outline-style: none;
             font-size: .9em;
         }
+
+@media screen and (max-width: 800px){
+    .contact-list, .contact-buttons{
+        width: 75%;
+    }
+
+    .add-contact-form{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .contact-list, .contact-buttons{
+        width: 96%;
+        margin: 20px auto;
+    }
+
+    .add-contact-form{
+        width: 90%;
+    }
+}

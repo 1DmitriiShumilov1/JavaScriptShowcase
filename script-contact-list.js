@@ -44,17 +44,22 @@ function runCode(){
         var inputPhone = document.getElementsByClassName("input-phone")[0].value;
         var inputCity = document.getElementsByClassName("input-city")[0].value;
 
+        if (inputPhone.length < 10){
+            alert("Phone number should contain 10 digits");
+            return;
+        }
+
+        if(inputName == "" || inputCity == ""){
+            alert("Please fill up all the fields");
+            return;
+        }
+
         var duplicateNumber = false;
         
         for (i = 0; i < contacts.length; i++){
             if (contacts[i].phoneNumber == inputPhone){
                 duplicateNumber = true;
             }
-        }
-
-        if (inputPhone.length < 10){
-            alert("Phone number should contain 10 digits");
-            return;
         }
 
         switch(duplicateNumber){
