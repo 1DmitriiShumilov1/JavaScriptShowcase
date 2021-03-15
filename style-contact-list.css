@@ -20,6 +20,7 @@ html, body{
     margin: 20px auto;
 }
     .cell{
+        transition-duration: 200ms;
         background-color: rgb(80, 80, 80);
         margin: 1px;
         padding: 5px
@@ -27,6 +28,11 @@ html, body{
         .big-cell{
             font-size: 1.2em;
             color:rgb(136, 247, 255)
+        }
+        .input-cell:hover{
+            transition-duration: 200ms;
+            background-color: rgb(54, 54, 54);
+            cursor: pointer;
         }
     .btn{
         background-color: darkgrey;
@@ -47,16 +53,9 @@ html, body{
         .cancel-update{
             margin: 20px auto;
         }
-        .center-button{
-            display: flex;
-            width: 100%;
-        }
 
-.invisible-add{
+.invisible-add, .invisible-update, .invisible-form{
    display: none;
-}
-.invisible-update{
-    display: none;
 }
 
 .update-form-1{
@@ -96,6 +95,21 @@ html, body{
         .final-button{
             width: 40%;
         }
+    .flexbox-buttons{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+.update-text-visible, .update-phone-visible{
+    display: block;
+    width: 100%;
+}
+    .update-input-name, .update-input-phone{
+        display: block;
+        width: 80%;
+        margin: 20px auto;
+    }
 
 @media screen and (max-width: 800px){
     .contact-list, .contact-buttons{

@@ -16,17 +16,17 @@
         <span class="cell big-cell">Phone #</span>
         <span class="cell big-cell">City</span>
 
-        <span class="cell" >Jordan</span>
-        <span class="cell" >9999991234</span>
-        <span class="cell" >Los Angeles</span>
+        <span class="cell edit-cell" >Jordan</span>
+        <span class="cell edit-cell" >9999991234</span>
+        <span class="cell edit-cell" >Los Angeles</span>
+        
+        <span class="cell edit-cell" >Alex</span>
+        <span class="cell edit-cell" >1234567890</span>
+        <span class="cell edit-cell" >San Francisco</span>
 
-        <span class="cell" >Alex</span>
-        <span class="cell" >1234567890</span>
-        <span class="cell" >San Francisco</span>
-
-        <span class="cell" >Sarah</span>
-        <span class="cell" >9876543210</span>
-        <span class="cell" >Auburn</span>
+        <span class="cell edit-cell" >Sarah</span>
+        <span class="cell edit-cell" >9876543210</span>
+        <span class="cell edit-cell" >Auburn</span>
     </div>
 
     <div class="contact-buttons">
@@ -53,8 +53,20 @@
     
     <div class="invisible-update">
         <p class="text-update">Click on the item you want to update</p>
-        <div class="center-button">
-            <button type="button" class="btn final-button cancel cancel-update">Cancel</button>
+
+        <form class="invisible-form update-info update-text">
+            <input type="text" class="input update-input-name">
+        </form>
+
+        <form class="invisible-form update-info update-phone">
+            <input type="number" class="input update-input-phone">
+        </form>
+
+        <div class="final-step-buttons">
+            <div class="flexbox-buttons">
+                <button type="button" class="btn final-button update-done">Done</button>
+                <button type="button" class="btn final-button cancel cancel-update">Cancel</button>
+            </div>
         </div>
     </div>
 
