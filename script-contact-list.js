@@ -43,21 +43,18 @@ function runCode(){
 
     updateContactButton.addEventListener('click', () => {
         document.getElementsByClassName("update-input-name")[0].value = "";
+        cancelButton_update.addEventListener('click', closeWindowUpdate, {once: true});
         invisibleObjectUpdate.classList.add("update-form-1");
-            /*editCells[i].addEventListener('click', function (e) {
-                var target = e.target;
-                console.log(target);
-                updateInfo(editCells, target);
-                return;
-            }, {once: true});*/
             for (var i = 0; i < editCells.length; i++){
-                editCells[i].addEventListener('click', runFunction);
+                editCells[i].classList.add("hover-cell");
+                editCells[i].addEventListener('click', runFunction, {once: true});
             }
     });
 
     function runFunction(event){
         for (var i = 0; i < editCells.length; i++){
-            editCells[i].removeEventListener('click', runFunction);
+            editCells[i].classList.remove("hover-cell");
+            editCells[i].removeEventListener('click', runFunction, {once: true});
         }
         var target = event.target;
         updateInfo(editCells, target);
@@ -65,7 +62,6 @@ function runCode(){
     }
 
     cancelButton.addEventListener('click', closeWindow);
-    cancelButton_update.addEventListener('click', closeWindowUpdate);
 
     addContactButton_done.addEventListener('click', addContact);
 
@@ -129,23 +125,49 @@ function runCode(){
 
 
     function updateInfo(editCells, target){
-        var newNameOrCityInput = document.getElementsByClassName("update-input-name")[0];
         var header = document.getElementsByClassName("text-update")[0];
         var newInfo = document.getElementsByClassName("update-text")[0];
+        var newPhone = document.getElementsByClassName("update-phone")[0];
         var buttonReadyToUpdate = document.getElementsByClassName("update-done")[0];
 
-        target.classList.add("input-cell");
+        cancelButton_update.classList.add("invisible-update");
 
-        header.innerHTML = "Enter the new info";
-        buttonReadyToUpdate.addEventListener('click', () => {
-            realTarget = document.getElementsByClassName("input-cell")[0];
-            newNameOrCityInput = document.getElementsByClassName("update-input-name")[0];
-            realTarget.innerText = newNameOrCityInput.value;
-            closeWindowUpdateText(header, newInfo);
-            realTarget.classList.remove("input-cell");
-            /*newPhone.classList.remove("update-phone-visible");*/
-        });
-        newInfo.classList.add("update-text-visible");
+        target.classList.add("input-cell");
+        console.log(target.innerHTML)
+
+        if (isNaN(target.innerHTML)){
+            header.innerHTML = "Enter the new info";
+            newInfo.classList.add("update-text-visible");
+            buttonReadyToUpdate.addEventListener('click', () => {
+                realTarget = document.getElementsByClassName("input-cell")[0];
+                newNameOrCityInput = document.getElementsByClassName("update-input-name")[0];
+                realTarget.innerText = newNameOrCityInput.value;
+                realTarget.classList.remove("input-cell");
+
+                invisibleObjectUpdate.classList.remove("update-form-1");
+                newInfo.classList.remove("update-text-visible");
+                header.innerHTML = "Click on the item you want to update";
+                cancelButton_update.classList.remove("invisible-update");
+
+                return;
+            }, {once: true});
+        } else {
+            header.innerHTML = "Enter the new number";
+            newPhone.classList.add("update-phone-visible");
+            buttonReadyToUpdate.addEventListener('click', () => {
+                realTarget = document.getElementsByClassName("input-cell")[0];
+                newPhoneInput = document.getElementsByClassName("update-input-phone")[0];
+                realTarget.innerHTML = newPhoneInput.value;
+                realTarget.classList.remove("input-cell");
+
+                invisibleObjectUpdate.classList.remove("update-form-1");
+                newPhone.classList.remove("update-phone-visible");
+                header.innerHTML = "Click on the item you want to update";
+                cancelButton_update.classList.remove("invisible-update");
+
+                return;
+            }, {once: true});
+        }
         
     };
 
@@ -153,21 +175,8 @@ function runCode(){
         invisibleObjectAdd.classList.remove("add-contact-form");
     }
 
-    function closeWindowUpdateText(var1, var2){
-        invisibleObjectUpdate.classList.remove("update-form-1");
-        var1.innerHTML = "Click on the item you want to update";
-        var2.classList.remove("update-text-visible");
-        var2.value = "";
-    }
-
-    function closeWindowUpdatePhone(var1, var2){
-        invisibleObjectUpdate.classList.remove("update-form-1");
-        var1.innerHTML = "Click on the item you want to update";
-        var2.classList.remove("update-phone-visible");
-        var2.value = "";
-    }
-
     function closeWindowUpdate(){
         invisibleObjectUpdate.classList.remove("update-form-1");
     }
 }
+

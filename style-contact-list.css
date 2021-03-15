@@ -29,7 +29,7 @@ html, body{
             font-size: 1.2em;
             color:rgb(136, 247, 255)
         }
-        .edit-cell:hover{
+        .hover-cell:hover{
             transition-duration: 200ms;
             background-color: rgb(54, 54, 54);
             cursor: pointer;
