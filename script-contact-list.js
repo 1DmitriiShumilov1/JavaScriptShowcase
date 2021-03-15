@@ -35,22 +35,34 @@ function runCode(){
     const invisibleObjectAdd = document.getElementsByClassName("invisible-add")[0];
     const invisibleObjectUpdate = document.getElementsByClassName("invisible-update")[0];
 
+    const editCells = document.getElementsByClassName("edit-cell");
+
     addContactButton.addEventListener('click', () => {
         invisibleObjectAdd.classList.add("add-contact-form");
     });
 
     updateContactButton.addEventListener('click', () => {
+        document.getElementsByClassName("update-input-name")[0].value = "";
         invisibleObjectUpdate.classList.add("update-form-1");
-        var inputCells = document.getElementsByClassName("edit-cell");
-        for (var i = 0; i < inputCells.length; i++){
-            inputCells[i].classList.add("input-cell");
-            inputCells[i].addEventListener('click', function (e) {
+            /*editCells[i].addEventListener('click', function (e) {
                 var target = e.target;
-                updateInfo(inputCells, target);
+                console.log(target);
+                updateInfo(editCells, target);
                 return;
-            }, false);
-        }
+            }, {once: true});*/
+            for (var i = 0; i < editCells.length; i++){
+                editCells[i].addEventListener('click', runFunction);
+            }
     });
+
+    function runFunction(event){
+        for (var i = 0; i < editCells.length; i++){
+            editCells[i].removeEventListener('click', runFunction);
+        }
+        var target = event.target;
+        updateInfo(editCells, target);
+        return;
+    }
 
     cancelButton.addEventListener('click', closeWindow);
     cancelButton_update.addEventListener('click', closeWindowUpdate);
@@ -116,46 +128,25 @@ function runCode(){
         }
 
 
-    function updateInfo(inputCells, target){
-        var header = document.getElementsByClassName("text-update")[0];
-        var newNameOrCity = document.getElementsByClassName("update-text")[0];
-        var newPhone = document.getElementsByClassName("update-phone")[0];
+    function updateInfo(editCells, target){
         var newNameOrCityInput = document.getElementsByClassName("update-input-name")[0];
-        var newPhoneInput = document.getElementsByClassName("update-input-phone")[0];
+        var header = document.getElementsByClassName("text-update")[0];
+        var newInfo = document.getElementsByClassName("update-text")[0];
         var buttonReadyToUpdate = document.getElementsByClassName("update-done")[0];
 
-        for (var i = 0; i < inputCells.length; i++){
-            inputCells[i].removeEventListener('click', e => {
-                var target = e.target;
-                updateInfo(inputCells, target);
-                return;
-            });
-        }
+        target.classList.add("input-cell");
 
-        if(isNaN(target.innerHTML)){
-            header.innerHTML = "Enter the new info";
-            newPhone.classList.remove("update-phone-visible");
-            newNameOrCity.classList.add("update-text-visible");
-            buttonReadyToUpdate.addEventListener('click', function () {
-                console.log(newNameOrCityInput);
-                target.innerHTML = newNameOrCityInput.value;
-                closeWindowUpdateText(header, newNameOrCity);
-            });
-
-        } else {
-            header.innerHTML = "Enter the new number";
-            newNameOrCity.classList.remove("update-text-visible");
-            newPhone.classList.add("update-phone-visible");
-            buttonReadyToUpdate.addEventListener('click', function () {
-                console.log(newPhoneInput)
-                target.innerHTML = newPhoneInput.value;
-                closeWindowUpdatePhone(header, newPhone);
-            });
-        }
+        header.innerHTML = "Enter the new info";
+        buttonReadyToUpdate.addEventListener('click', () => {
+            realTarget = document.getElementsByClassName("input-cell")[0];
+            newNameOrCityInput = document.getElementsByClassName("update-input-name")[0];
+            realTarget.innerText = newNameOrCityInput.value;
+            closeWindowUpdateText(header, newInfo);
+            realTarget.classList.remove("input-cell");
+            /*newPhone.classList.remove("update-phone-visible");*/
+        });
+        newInfo.classList.add("update-text-visible");
         
-        for (var i = 0; i < inputCells.length; i++){
-            inputCells[i].classList.remove("input-cell");
-        }
     };
 
     function closeWindow(){
@@ -169,7 +160,7 @@ function runCode(){
         var2.value = "";
     }
 
-    function closeWindowUpdateText(var1, var2){
+    function closeWindowUpdatePhone(var1, var2){
         invisibleObjectUpdate.classList.remove("update-form-1");
         var1.innerHTML = "Click on the item you want to update";
         var2.classList.remove("update-phone-visible");
