@@ -44,7 +44,7 @@ function runCode(){
         var inputCells = document.getElementsByClassName("edit-cell");
         for (var i = 0; i < inputCells.length; i++){
             inputCells[i].classList.add("input-cell");
-            inputCells[i].addEventListener('click', e => {
+            inputCells[i].addEventListener('click', function (e) {
                 var target = e.target;
                 updateInfo(inputCells, target);
                 return;
@@ -139,7 +139,7 @@ function runCode(){
             buttonReadyToUpdate.addEventListener('click', function () {
                 console.log(newNameOrCityInput);
                 target.innerHTML = newNameOrCityInput.value;
-                closeWindowUpdate(header, newNameOrCity, newPhone);
+                closeWindowUpdateText(header, newNameOrCity);
             });
 
         } else {
@@ -149,7 +149,7 @@ function runCode(){
             buttonReadyToUpdate.addEventListener('click', function () {
                 console.log(newPhoneInput)
                 target.innerHTML = newPhoneInput.value;
-                closeWindowUpdate(header, newNameOrCity, newPhone);
+                closeWindowUpdatePhone(header, newPhone);
             });
         }
         
@@ -161,12 +161,22 @@ function runCode(){
     function closeWindow(){
         invisibleObjectAdd.classList.remove("add-contact-form");
     }
-    function closeWindowUpdate(var1, var2, var3){
+
+    function closeWindowUpdateText(var1, var2){
+        invisibleObjectUpdate.classList.remove("update-form-1");
         var1.innerHTML = "Click on the item you want to update";
         var2.classList.remove("update-text-visible");
         var2.value = "";
-        var3.value = "";
-        var3.classList.remove("update-phone-visible");
+    }
+
+    function closeWindowUpdateText(var1, var2){
+        invisibleObjectUpdate.classList.remove("update-form-1");
+        var1.innerHTML = "Click on the item you want to update";
+        var2.classList.remove("update-phone-visible");
+        var2.value = "";
+    }
+
+    function closeWindowUpdate(){
         invisibleObjectUpdate.classList.remove("update-form-1");
     }
 }
