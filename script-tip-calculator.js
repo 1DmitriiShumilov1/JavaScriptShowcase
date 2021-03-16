@@ -5,8 +5,8 @@ if (document.readyState == 'loading'){
 }
 
 function runCode(){
-    const buttonCalculate = document.querySelector("button")
-    buttonCalculate.addEventListener('click', calculateTip)
+    const buttonCalculate = document.querySelector("button");
+    buttonCalculate.addEventListener('click', calculateTip);
     function calculateTip(){
         var bill = document.getElementsByClassName("value-1")[0].value;
         var service = document.getElementsByClassName("value-2")[0];
@@ -17,10 +17,17 @@ function runCode(){
             alert("The tip is equal to " + tip);
             return;
         } else {
-            tip = Math.round((bill * service.value * numberOfPeople));
-            if (tip > bill){
-                tip = tip / 3;
-                alert("The tip is equal to " + tip);
+            if (bill < 20 || bill > 400){
+                alert("Bill should be in the price range of 20$ and 400$");
+                return;
+            }
+            if (numberOfPeople < 1 || numberOfPeople > 15){
+                alert("Number of people has to be in the range of 1 and 15");
+                return;
+            }
+            tip = Math.round((bill / service.value * 1.3) + numberOfPeople * 1.2);
+            if ((tip > bill) || (tip === bill)){
+                alert("Are you sure that the amount of people paying the bill is larger than / equal to the bill itself? Try again :)");
                 return;
             } else {
                 alert("The tip is equal to " + tip);
