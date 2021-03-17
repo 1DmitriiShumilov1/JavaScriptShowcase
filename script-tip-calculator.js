@@ -25,12 +25,12 @@ function runCode(){
                 alert("Number of people has to be in the range of 1 and 15");
                 return;
             }
-            tip = Math.round((bill / service.value * 1.3) + numberOfPeople * 1.2);
+            tip = Math.round((bill * service.value / numberOfPeople) + numberOfPeople);
             if ((tip > bill) || (tip === bill)){
                 alert("Are you sure that the amount of people paying the bill is larger than / equal to the bill itself? Try again :)");
                 return;
             } else {
-                alert("The tip is equal to " + tip);
+                alert("Your tip is equal to " + tip + "$");
                 return;
             }
         }
