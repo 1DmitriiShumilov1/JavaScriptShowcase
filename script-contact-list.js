@@ -57,7 +57,7 @@ function runCode(){
             editCells[i].removeEventListener('click', runFunction, {once: true});
         }
         var target = event.target;
-        updateInfo(editCells, target);
+        updateInfo(target);
         return;
     }
 
@@ -78,7 +78,7 @@ function runCode(){
         if (/[^a-z]/i.test(inputName) || /[^a-z]/i.test(inputCity)) {
             alert("PLease use letters for name and city");
             return;
-         }
+        }
 
         if(inputName == "" || inputCity == ""){
             alert("Please fill up all the fields");
@@ -124,7 +124,7 @@ function runCode(){
         }
 
 
-    function updateInfo(editCells, target){
+    function updateInfo(target){
         var header = document.getElementsByClassName("text-update")[0];
         var newInfo = document.getElementsByClassName("update-text")[0];
         var newPhone = document.getElementsByClassName("update-phone")[0];
@@ -141,15 +141,25 @@ function runCode(){
             buttonReadyToUpdate.addEventListener('click', () => {
                 realTarget = document.getElementsByClassName("input-cell")[0];
                 newNameOrCityInput = document.getElementsByClassName("update-input-name")[0];
-                realTarget.innerText = newNameOrCityInput.value;
-                realTarget.classList.remove("input-cell");
 
-                invisibleObjectUpdate.classList.remove("update-form-1");
-                newInfo.classList.remove("update-text-visible");
-                header.innerHTML = "Click on the item you want to update";
-                cancelButton_update.classList.remove("invisible-update");
+                if (newNameOrCityInput.value.length != 0){
+                    realTarget.innerText = newNameOrCityInput.value;
+                    realTarget.classList.remove("input-cell");
 
-                return;
+                    invisibleObjectUpdate.classList.remove("update-form-1");
+                    newInfo.classList.remove("update-text-visible");
+                    header.innerHTML = "Click on the item you want to update";
+                    cancelButton_update.classList.remove("invisible-update");
+                    return;
+
+                } else {
+                    invisibleObjectUpdate.classList.remove("update-form-1");
+                    newInfo.classList.remove("update-text-visible");
+                    header.innerHTML = "Click on the item you want to update";
+                    cancelButton_update.classList.remove("invisible-update");
+                    return;
+                }
+
             }, {once: true});
         } else {
             header.innerHTML = "Enter the new number";
@@ -157,15 +167,24 @@ function runCode(){
             buttonReadyToUpdate.addEventListener('click', () => {
                 realTarget = document.getElementsByClassName("input-cell")[0];
                 newPhoneInput = document.getElementsByClassName("update-input-phone")[0];
-                realTarget.innerHTML = newPhoneInput.value;
-                realTarget.classList.remove("input-cell");
 
-                invisibleObjectUpdate.classList.remove("update-form-1");
-                newPhone.classList.remove("update-phone-visible");
-                header.innerHTML = "Click on the item you want to update";
-                cancelButton_update.classList.remove("invisible-update");
+                if (newPhoneInput.value.length != 0){
+                    realTarget.innerHTML = newPhoneInput.value;
+                    realTarget.classList.remove("input-cell");
 
-                return;
+                    invisibleObjectUpdate.classList.remove("update-form-1");
+                    newPhone.classList.remove("update-phone-visible");
+                    header.innerHTML = "Click on the item you want to update";
+                    cancelButton_update.classList.remove("invisible-update");
+                    return;
+
+                } else {
+                    invisibleObjectUpdate.classList.remove("update-form-1");
+                    newPhone.classList.remove("update-phone-visible");
+                    header.innerHTML = "Click on the item you want to update";
+                    cancelButton_update.classList.remove("invisible-update");
+                    return;
+                }
             }, {once: true});
         }
         
@@ -177,6 +196,10 @@ function runCode(){
 
     function closeWindowUpdate(){
         invisibleObjectUpdate.classList.remove("update-form-1");
+        for (var i = 0; i < editCells.length; i++){
+            editCells[i].classList.remove("hover-cell");
+            editCells[i].removeEventListener('click', runFunction, {once: true});
+        }
     }
 }
 
