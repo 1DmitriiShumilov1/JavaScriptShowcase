@@ -50,12 +50,20 @@ html, body{
         width: 90%;
         margin: auto;
     }
-        .cancel-update{
+        .cancel-update, .cancel-remove{
             margin: 20px auto;
         }
 
-.invisible-add, .invisible-update, .invisible-form{
+.invisible-add, .invisible-update, .invisible-form, .invisible-remove{
    display: none;
+}
+
+.remove-form{
+    display: block;
+    background-color: cornflowerblue;
+    width: 40%;
+    border-radius: 5px;
+    margin: auto;
 }
 
 .update-form-1{
@@ -116,7 +124,7 @@ html, body{
         width: 75%;
     }
 
-    .add-contact-form{
+    .add-contact-form, .update-form-1, .remove-form{
         width: 60%;
     }
 }
@@ -127,7 +135,7 @@ html, body{
         margin: 20px auto;
     }
 
-    .add-contact-form{
+    .add-contact-form, .update-form-1, .remove-form{
         width: 90%;
     }
 }
