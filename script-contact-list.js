@@ -25,12 +25,25 @@ function runCode(){
     const editCells = document.getElementsByClassName("edit-cell");
 
     //---------------------------------------------------------------------//
-    addContactButton.addEventListener('click', () => {
+    addContactButton.addEventListener('click', showAddContact);
+    updateContactButton.addEventListener('click', showUpdateContact);
+    removeContactButton.addEventListener('click', showRemoveContact);
+
+    function showAddContact(){
+        addContactButton.removeEventListener('click', showAddContact);
+        updateContactButton.removeEventListener('click', showUpdateContact);
+        removeContactButton.removeEventListener('click', showRemoveContact);
+
         invisibleObjectAdd.classList.add("add-contact-form");
         cancelButton.addEventListener('click', closeWindow);
-    });
+        addContactButton_done.addEventListener('click', addContact);
+    }
 
-    updateContactButton.addEventListener('click', () => {
+    function showUpdateContact(){
+        addContactButton.removeEventListener('click', showAddContact);
+        updateContactButton.removeEventListener('click', showUpdateContact);
+        removeContactButton.removeEventListener('click', showRemoveContact);
+
         document.getElementsByClassName("update-input-name")[0].value = "";
         document.getElementsByClassName("update-input-phone")[0].value = "";
 
@@ -38,11 +51,15 @@ function runCode(){
         cancelButton_update.addEventListener('click', closeWindowUpdate, {once: true});
             for (let i = 0; i < editCells.length; i++){
                 editCells[i].classList.add("hover-cell");
-                editCells[i].addEventListener('click', runFunction, {once: true});
+                editCells[i].addEventListener('click', updateContact, {once: true});
             }
-    });
+    }
 
-    removeContactButton.addEventListener('click', () => {
+    function showRemoveContact(){
+        addContactButton.removeEventListener('click', showAddContact);
+        updateContactButton.removeEventListener('click', showUpdateContact);
+        removeContactButton.removeEventListener('click', showRemoveContact);
+
         invisibleObjectRemove.classList.add("remove-form");
         cancelButton_remove.addEventListener('click', closeWindowRemove, {once: true});
         let nameCells = document.getElementsByClassName("name-cell");
@@ -51,20 +68,18 @@ function runCode(){
             nameCells[i].classList.add("hover-cell");
             nameCells[i].addEventListener('click', deleteContact, {once: true});
         }
-    });
+    }
     //---------------------------------------------------------------------//
 
-    function runFunction(event){
+    function updateContact(event){
         for (let i = 0; i < editCells.length; i++){
             editCells[i].classList.remove("hover-cell");
-            editCells[i].removeEventListener('click', runFunction, {once: true});
+            editCells[i].removeEventListener('click', updateContact, {once: true});
         }
         let target = event.target;
         updateInfo(target);
         return;
     }
-
-    addContactButton_done.addEventListener('click', addContact);
 
     function addContact(){
         let inputName = document.getElementsByClassName("input-name")[0].value;
@@ -198,6 +213,10 @@ function runCode(){
                 }
             }, {once: true});
 
+            addContactButton.addEventListener('click', showAddContact);
+            updateContactButton.addEventListener('click', showUpdateContact);
+            removeContactButton.addEventListener('click', showRemoveContact);
+
         } else {
             header.innerHTML = "Enter the new number";
             newPhone.classList.add("update-phone-visible");
@@ -213,14 +232,24 @@ function runCode(){
                         realTarget.classList.remove("input-cell");
                         updatePhoneFinish(header, newPhone);
                         return;
-                    } else {
-                        updateContacts(realTarget.innerHTML, newPhoneInput.value);
-                        realTarget.innerHTML = newPhoneInput.value;
-                        updateContacts(realTarget);
-                        realTarget.classList.remove("input-cell");
-                        updatePhoneFinish(header, newPhone);
-                        return;
                     }
+
+                    for (let i = 0; i < contacts.length; i++){
+                        if(contacts[i].phoneNumber == newPhoneInput.value){
+                            alert("This number is already on the list");
+                            realTarget.classList.remove("input-cell");
+                            updatePhoneFinish(header, newPhone);
+                            return;
+                        }
+                    }
+
+                    updateContacts(realTarget.innerHTML, newPhoneInput.value);
+                    realTarget.innerHTML = newPhoneInput.value;
+                    updateContacts(realTarget);
+                    realTarget.classList.remove("input-cell");
+                    updatePhoneFinish(header, newPhone);
+                    return;
+                    
                 } else {
                     realTarget.classList.remove("input-cell");
                     updatePhoneFinish(header, newPhone);
@@ -228,6 +257,10 @@ function runCode(){
                 }
 
             }, {once: true});
+
+            addContactButton.addEventListener('click', showAddContact);
+            updateContactButton.addEventListener('click', showUpdateContact);
+            removeContactButton.addEventListener('click', showRemoveContact);
 
         }
         
@@ -268,14 +301,22 @@ function runCode(){
 
     function closeWindow(){
         invisibleObjectAdd.classList.remove("add-contact-form");
+
+        addContactButton.addEventListener('click', showAddContact);
+        updateContactButton.addEventListener('click', showUpdateContact);
+        removeContactButton.addEventListener('click', showRemoveContact);
     }
 
     function closeWindowUpdate(){
         invisibleObjectUpdate.classList.remove("update-form-1");
         for (let i = 0; i < editCells.length; i++){
             editCells[i].classList.remove("hover-cell");
-            editCells[i].removeEventListener('click', runFunction, {once: true});
+            editCells[i].removeEventListener('click', updateContact, {once: true});
         }
+
+        addContactButton.addEventListener('click', showAddContact);
+        updateContactButton.addEventListener('click', showUpdateContact);
+        removeContactButton.addEventListener('click', showRemoveContact);
     }
 
     function closeWindowRemove(){
@@ -284,6 +325,10 @@ function runCode(){
             editCells[i].classList.remove("hover-cell");
             editCells[i].removeEventListener('click', deleteContact, {once: true});
         }
+
+        addContactButton.addEventListener('click', showAddContact);
+        updateContactButton.addEventListener('click', showUpdateContact);
+        removeContactButton.addEventListener('click', showRemoveContact);
     }
 }
 
@@ -303,4 +348,27 @@ function runCode(){
         "phoneNumber": "9876543210", 
         "city": "Auburn"
     }
-    ];*/
+    ];
+    
+    --------------old code---------------
+    
+    if (newPhoneInput.value.length != 0){
+        if (newPhoneInput.value.length != 10){
+            alert("Phone number should contain 10 digits");
+            realTarget.classList.remove("input-cell");
+            updatePhoneFinish(header, newPhone);
+            return;
+        } else {
+            updateContacts(realTarget.innerHTML, newPhoneInput.value);
+            realTarget.innerHTML = newPhoneInput.value;
+            updateContacts(realTarget);
+            realTarget.classList.remove("input-cell");
+            updatePhoneFinish(header, newPhone);
+            return;
+        }
+    } else {
+        realTarget.classList.remove("input-cell");
+        updatePhoneFinish(header, newPhone);
+        return;
+    }
+    */
