@@ -21,7 +21,7 @@ html, body{
 }
     .cell{
         transition-duration: 200ms;
-        background-color: rgb(80, 80, 80);
+        background-color: rgb(65, 65, 65);
         margin: 1px;
         padding: 5px
     }
@@ -35,21 +35,22 @@ html, body{
             cursor: pointer;
         }
     .btn{
-        background-color: darkgrey;
-        overflow: 0;
-        outline-style: none;
-        border: 1px solid black;
+        border-radius: 2px;
+        font-size: 100%;
+        padding: 2px;
     }
         .btn:hover{
             cursor: pointer;
         }
-        .btn:active{
-            background-color: rgb(105, 105, 105);
-        }
     .button{
         width: 90%;
         margin: auto;
+        border: 1px solid white;
+        background-color: transparent;
     }
+        .button:active{
+            background-color: black;
+        }
         .cancel-update, .cancel-remove{
             margin: 20px auto;
         }
@@ -102,7 +103,12 @@ html, body{
     }
         .final-button{
             width: 40%;
+            background-color: darkgrey;
+            border: 1px solid black;
         }
+            .final-button:active{
+                background-color: rgb(95, 95, 95);
+            }
     .flexbox-buttons{
         display: flex;
         align-items: center;
@@ -122,6 +128,15 @@ html, body{
 @media screen and (max-width: 800px){
     .contact-list, .contact-buttons{
         width: 75%;
+    }
+
+    .contact-buttons{
+        grid-template-columns: none;
+        grid-template-rows: auto auto auto;
+    }
+
+    .button{
+        margin: 10px auto;
     }
 
     .add-contact-form, .update-form-1, .remove-form{
