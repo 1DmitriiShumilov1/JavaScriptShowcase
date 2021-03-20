@@ -27,7 +27,7 @@ html, body{
     }
         .big-cell{
             font-size: 1.2em;
-            color:rgb(136, 247, 255)
+            color:rgb(136, 247, 255);
         }
         .hover-cell:hover{
             transition-duration: 200ms;
